@@ -1,8 +1,11 @@
 import * as fs from 'fs';
-import * as EventEmitter from 'events';
+// import * as EventEmitter from 'events';
+import { EventEmitter } from 'events';
 import { Keys } from './constant/keys.constant';
 import { Events } from './constant/events.constant';
 import Characters from './constant/characters.constant';
+import path from "node:path";
+import type { Dirent } from "node:fs";
 // import { Chars, ShiftedChars, ShiftKeys } from './constant/characters.constant';
 // import { Chars, ShiftedChars, ShiftKeys } as ;
 
@@ -11,6 +14,11 @@ import Characters from './constant/characters.constant';
 // Character: require(`${__dirname}/constant/characters.constant.ts`),
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+
+function fullPath(item: Dirent): string {
+  return path.join(item.parentPath, item.name);
+}
 
 /**
  * @class _KeyboardListener
@@ -77,7 +85,8 @@ class _KeyboardListener extends EventEmitter {
         });
 
         for (const item of list) {
-            const fullpath: string = `${item.path}/${item.name}`;
+            // const fullpath: string = `${item.path}/${item.name}`; //legacy
+            const fullpath: string = fullPath(item);
             const valid = item.isCharacterDevice() || item.isSymbolicLink();
             const filtered = regex === undefined ? true : fullpath.match(regex);
 

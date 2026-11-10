@@ -1,0 +1,30 @@
+{
+  "name": "linux-keyboard-listener",
+  "version": "1.0.0",
+  "description": "Linux keyboard listener for Node.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^5.9.3"
+  },
+  "keywords": [
+    "linux",
+    "keyboard",
+    "listener",
+    "node",
+    "typescript"
+  ],
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "events": "^3.3.0",
+    "fs": "^0.0.1-security"
+  }
+}
